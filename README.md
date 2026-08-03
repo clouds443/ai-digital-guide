@@ -87,6 +87,3 @@ python -m unittest discover -s tests -v
 python -m unittest tests.test_rag_metadata tests.test_api_contract tests.test_frontend_contract tests.test_config_contract tests.test_delivery_contract -v
 ```
 
-## 中文文件规则
-
-所有中文源码、JSON 与文档读写遵守 `AGENTS.md`：统一 UTF-8，PowerShell 读取前设置 UTF-8，禁止用 PowerShell here-string、重定向、`Set-Content`、`Out-File` 写入中文文件。
