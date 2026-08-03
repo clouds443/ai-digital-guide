@@ -1,5 +1,7 @@
 # 灵山胜境 AI 数字人导游系统
 
+<img width="1848" height="908" alt="屏幕截图 2026-07-20 114522" src="https://github.com/user-attachments/assets/448305bc-c077-4da8-9ec8-48e67a3ce269" />
+
 本项目是基于live2d模型的AI 数字人导游系统，包含游客交互端、管理员后台、RAG本地知识库、Live2D数字人驱动、语音识别与语音合成服务。
 
 ## 功能范围
