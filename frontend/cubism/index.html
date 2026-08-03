@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>灵山胜境 Live2D 数字人</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      margin: 0;
+      overscroll-behavior-x: none;
+      touch-action: none;
+      background:
+        linear-gradient(180deg, rgba(235, 247, 255, .96), rgba(229, 243, 233, .96)),
+        radial-gradient(circle at 72% 12%, rgba(242, 195, 107, .30), transparent 36%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+    body {
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    body::before,
+    body::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 30%;
+      height: 30%;
+      opacity: .18;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      left: 10%;
+      border-radius: 999px 999px 0 0;
+      background: #8aa3a8;
+    }
+    body::after {
+      right: 12%;
+      width: 38%;
+      height: 22%;
+      border-radius: 48% 48% 0 0;
+      background: #9c8a62;
+    }
+    body > canvas {
+      position: relative;
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+    .status {
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      z-index: 2;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      color: #30445a;
+      font-size: 12px;
+      box-shadow: 0 8px 22px rgba(31,41,51,.09);
+    }
+    .status::after {
+      content: "数字人已就绪";
+    }
+    body.speaking .status::after {
+      content: "正在语音播报";
+    }
+    body.listening .status::after {
+      content: "正在聆听游客问题";
+    }
+  </style>
+  <script src="/cubism/Core/live2dcubismcore.js"></script>
+  <script type="module" crossorigin src="/cubism/assets/index-Chr99YS7.js"></script>
+</head>
+<body>
+  <div class="status" aria-live="polite"></div>
+</body>
+</html>
