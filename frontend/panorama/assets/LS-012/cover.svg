@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#f4efe3"/>
+  <path d="M260 500 L640 170 L1020 500 Z" fill="#d5b978"/>
+  <rect x="300" y="500" width="680" height="100" fill="#c49a57"/>
+  <text x="640" y="650" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#1f2933">灵山梵宫</text>
+</svg>

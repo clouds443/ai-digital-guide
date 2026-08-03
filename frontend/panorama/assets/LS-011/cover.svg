@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#e6f2ff"/>
+  <path d="M500 520 L640 150 L780 520 Z" fill="#c9a65f"/>
+  <circle cx="640" cy="140" r="56" fill="#d5b978"/>
+  <text x="640" y="640" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#1f2933">灵山大佛</text>
+</svg>

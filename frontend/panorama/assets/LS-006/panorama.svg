@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4096" height="2048" viewBox="0 0 4096 2048">
+  <rect width="4096" height="2048" fill="#dff2ff"/>
+  <rect y="1120" width="4096" height="928" fill="#87b98d"/>
+  <circle cx="2048" cy="1190" r="360" fill="#b8d6ec"/>
+  <circle cx="2048" cy="1040" r="180" fill="#f6c2d6"/>
+  <path d="M1780 1020 C1940 870 2150 870 2310 1020 C2190 1110 1900 1110 1780 1020Z" fill="#f2e7a8"/>
+  <text x="2048" y="720" text-anchor="middle" font-size="180" font-family="Microsoft YaHei, sans-serif" fill="#1f2933">九龙灌浴</text>
+  <text x="2048" y="1540" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#30445a">莲花开合与喷泉演出 · 演示全景素材</text>
+</svg>

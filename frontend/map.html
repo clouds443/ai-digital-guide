@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灵山胜境 3D 路线地图</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #697386;
+      --line: #d9e2ec;
+      --paper: #ffffff;
+      --wash: #f4f7fb;
+      --gold: #b7791f;
+      --green: #1f8a70;
+      --red: #dc2626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--wash);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+    button, select { font: inherit; }
+    button { cursor: pointer; }
+    .map-shell {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 0;
+    }
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 8px 24px rgba(18, 38, 63, .08);
+      z-index: 10;
+    }
+    .title {
+      min-width: 0;
+      display: grid;
+      gap: 3px;
+    }
+    .title strong { font-size: 18px; }
+    .title span {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    select, .tool-btn {
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 10px;
+    }
+    .tool-btn.primary {
+      border-color: rgba(183,121,31,.4);
+      background: var(--gold);
+      color: #fff;
+      font-weight: 700;
+    }
+    .map-wrap {
+      position: relative;
+      min-height: 0;
+    }
+    #standaloneAmap {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #e9f5f1, #eef4fb);
+    }
+    .route-marker {
+      display: inline-grid;
+      grid-template-columns: 28px max-content;
+      align-items: center;
+      gap: 6px;
+      width: max-content;
+      max-width: none;
+      transform: translateY(-8px);
+      pointer-events: none;
+      white-space: nowrap;
+      overflow: visible;
+      filter: drop-shadow(0 8px 16px rgba(31, 41, 51, .18));
+    }
+    .route-marker-left {
+      grid-template-columns: max-content 28px;
+      transform: translate(calc(-100% + 28px), -8px);
+    }
+    .route-marker-index {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .route-marker-left .route-marker-index {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .route-marker-name {
+      min-width: max-content;
+      width: max-content;
+      max-width: none;
+      white-space: nowrap;
+      overflow: visible;
+      padding: 4px 7px;
+      border: 1px solid rgba(183,121,31,.35);
+      border-radius: 6px;
+      background: rgba(255,255,255,.94);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .route-marker-left .route-marker-name {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .status-pill {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      z-index: 8;
+      max-width: min(720px, calc(100vw - 32px));
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      border: 1px solid rgba(217,226,236,.85);
+      box-shadow: 0 8px 26px rgba(18, 38, 63, .14);
+      font-size: 13px;
+      line-height: 1.5;
+      backdrop-filter: blur(6px);
+    }
+    .fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: linear-gradient(135deg, #e9f5f1, #eef4fb);
+    }
+    .fallback.hidden { display: none; }
+    .fallback-card {
+      width: min(860px, 96vw);
+      padding: 22px;
+      border-radius: 8px;
+      border: 1px solid rgba(183,121,31,.24);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 18px 48px rgba(18, 38, 63, .16);
+    }
+    .fallback-card strong {
+      display: block;
+      color: #7a4e0c;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .fallback-route {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 112px;
+      margin: 12px 0;
+    }
+    .fallback-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--gold);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(183,121,31,.24);
+    }
+    .fallback-line {
+      width: 24px;
+      height: 2px;
+      background: rgba(183,121,31,.5);
+    }
+    .fallback-stops {
+      color: #425466;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+    .fallback-error {
+      margin-top: 10px;
+      color: var(--red);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+    @media (max-width: 760px) {
+      .topbar {
+        grid-template-columns: 1fr 1fr;
+      }
+      .title {
+        grid-column: 1 / -1;
+      }
+      select {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="standaloneMapPanel" class="map-shell">
+    <header class="topbar">
+      <div class="title">
+        <strong>灵山胜境 3D 路线地图</strong>
+        <span id="mapSubtitle">正在准备路线地图...</span>
+      </div>
+      <select id="routeSelect" aria-label="选择路线"></select>
+      <button class="tool-btn" type="button" onclick="reloadMap()">重新加载</button>
+      <button class="tool-btn" type="button" onclick="openOverviewPanorama()">全景地图</button>
+      <button class="tool-btn" type="button" onclick="openPanoramaViewer()">实景</button>
+      <button class="tool-btn primary" type="button" onclick="returnToGuide()">返回导览</button>
+    </header>
+    <section class="map-wrap">
+      <div id="standaloneAmap"></div>
+      <div id="mapFallback" class="fallback">
+        <div class="fallback-card">地图加载中...</div>
+      </div>
+      <div id="mapStatus" class="status-pill">地图加载中...</div>
+    </section>
+  </main>
+  <script>
+    const state = {
+      config: null,
+      scenics: [],
+      routes: [],
+      routeMap: null,
+      map: null,
+      AMap: null,
+      markers: [],
+      polyline: null,
+      controlBar: null,
+      scriptPromise: null,
+      routeDrawToken: 0,
+      routePathSource: "",
+      selectedScenicId: ""
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const escapeHtml = (text) => String(text || "").replace(/[&<>"']/g, (s) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#39;"
+    }[s]));
+
+    async function apiGet(path) {
+      const response = await fetch(path, { headers: { "Accept": "application/json" } });
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : {};
+      if (!response.ok) throw new Error(data.error || response.statusText || "请求失败");
+      return data;
+    }
+
+    function setStatus(message) {
+      const status = $("mapStatus");
+      const subtitle = $("mapSubtitle");
+      if (status) status.textContent = message || "";
+      if (subtitle) subtitle.textContent = message || "";
+    }
+
+    function currentRouteId() {
+      const params = new URLSearchParams(location.search);
+      return params.get("route") || "route_history";
+    }
+
+    function currentScenicId() {
+      const params = new URLSearchParams(location.search);
+      return params.get("scenic") || state.selectedScenicId || "";
+    }
+
+    function returnToGuide() {
+      location.href = "/?view=tourist";
+    }
+
+    function updateUrlRoute(routeId) {
+      const next = new URL(location.href);
+      next.searchParams.set("route", routeId || "route_history");
+      if (state.selectedScenicId) next.searchParams.set("scenic", state.selectedScenicId);
+      history.replaceState(null, "", next.toString());
+    }
+
+    function selectScenic(pointOrId) {
+      if (!pointOrId) return "";
+      const scenicId = typeof pointOrId === "string" ? pointOrId : (pointOrId.id || pointOrId.scenic_id || "");
+      if (!scenicId) return "";
+      state.selectedScenicId = scenicId;
+      const next = new URL(location.href);
+      next.searchParams.set("scenic", scenicId);
+      history.replaceState(null, "", next.toString());
+      return scenicId;
+    }
+
+    async function openPanoramaViewer(scenicId) {
+      const firstPoint = state.routeMap && state.routeMap.points && state.routeMap.points[0];
+      const id = selectScenic(scenicId || currentScenicId() || firstPoint) || "LS-002";
+      const viewerUrl = "/panorama.html?scenic=" + encodeURIComponent(id);
+      const popup = window.open(viewerUrl, "_blank", "noopener");
+      try {
+        const detail = await apiGet("/api/panorama/scenic/" + encodeURIComponent(id));
+        selectScenic(detail.scenic_id || id);
+        if (!detail.available && detail.message) {
+          setStatus((detail.name || "当前景点") + " · " + detail.message);
+        }
+      } catch (error) {
+        setStatus("实景数据暂不可用：" + (error.message || "请稍后再试"));
+      }
+      if (!popup) window.location.href = viewerUrl;
+    }
+
+    async function openOverviewPanorama() {
+      const viewerUrl = "/panorama.html?overview=1";
+      const popup = window.open(viewerUrl, "_blank", "noopener");
+      try {
+        const detail = await apiGet("/api/panorama/overview");
+        setStatus(detail.available ? "已打开灵山胜境全景地图" : (detail.message || "暂无景区全景素材"));
+      } catch (error) {
+        setStatus("全景地图暂不可用：" + (error.message || "请稍后再试"));
+      }
+      if (!popup) window.location.href = viewerUrl;
+    }
+
+    async function loadRoutes() {
+      const data = await apiGet("/api/routes");
+      state.routes = data.routes || [];
+      const select = $("routeSelect");
+      if (!select) return;
+      select.innerHTML = state.routes.map(route => `<option value="${escapeHtml(route.id)}">${escapeHtml(route.name)} · ${escapeHtml(route.duration || "")}</option>`).join("");
+      select.value = currentRouteId();
+      if (!select.value && state.routes.length) select.value = state.routes[0].id;
+      select.onchange = () => {
+        updateUrlRoute(select.value);
+        loadRouteMap(select.value);
+      };
+    }
+
+    async function loadRouteMap(routeId) {
+      const id = routeId || currentRouteId();
+      const data = await apiGet("/api/map/route/" + encodeURIComponent(id));
+      state.routeMap = data;
+      const selectedInUrl = currentScenicId();
+      const firstPoint = data.points && data.points[0];
+      selectScenic(selectedInUrl || firstPoint);
+      const select = $("routeSelect");
+      if (select) select.value = data.id;
+      updateUrlRoute(data.id);
+      setStatus((data.name || "灵山推荐路线") + " · " + (data.points ? data.points.length : 0) + " 个标记点");
+      if (state.map && state.AMap) {
+        drawRoute();
+        hideFallback();
+      } else {
+        showFallback("本地路线示意", data, "");
+      }
+    }
+
+    async function loadAmapScript() {
+      if (window.AMap) return window.AMap;
+      if (state.scriptPromise) return state.scriptPromise;
+      window._AMapSecurityConfig = { securityJsCode: state.config.security_js_code || "" };
+      state.scriptPromise = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://webapi.amap.com/maps?v=2.0&key=" + encodeURIComponent(state.config.amap_key) + "&plugin=AMap.ControlBar,AMap.Walking";
+        script.async = true;
+        script.onload = () => window.AMap ? resolve(window.AMap) : reject(new Error("高德地图脚本已加载，但没有暴露 AMap。"));
+        script.onerror = () => reject(new Error("高德地图脚本加载失败，请检查 Key、域名白名单或网络。"));
+        document.head.appendChild(script);
+      });
+      return state.scriptPromise;
+    }
+
+    function initMap() {
+      state.AMap = window.AMap;
+      if (state.map) return;
+      state.map = new AMap.Map("standaloneAmap", {
+        viewMode: "3D",
+        pitch: state.config.pitch || 58,
+        zoom: state.config.zoom || 16,
+        center: state.config.center || [120.0948, 31.4216],
+        mapStyle: "amap://styles/normal",
+        resizeEnable: true,
+        animateEnable: false,
+        jogEnable: false
+      });
+      installControlBar();
+    }
+
+    function installControlBar() {
+      if (!state.map || !state.AMap || state.controlBar) return;
+      const add = () => {
+        if (!state.AMap.ControlBar || state.controlBar) return;
+        state.controlBar = new AMap.ControlBar({
+          position: { right: "18px", top: "82px" },
+          showControlButton: true
+        });
+        state.map.addControl(state.controlBar);
+      };
+      if (state.AMap.ControlBar) {
+        add();
+        return;
+      }
+      state.AMap.plugin(["AMap.ControlBar"], add);
+    }
+
+    function coordinateOf(item) {
+      if (!item) return null;
+      const lng = typeof item.getLng === "function" ? item.getLng() : (item.lng !== undefined ? item.lng : item[0]);
+      const lat = typeof item.getLat === "function" ? item.getLat() : (item.lat !== undefined ? item.lat : item[1]);
+      if (lng === undefined || lat === undefined) return null;
+      return [Number(lng), Number(lat)];
+    }
+
+    function sameCoordinate(a, b) {
+      return !!a && !!b && Math.abs(a[0] - b[0]) < 0.000001 && Math.abs(a[1] - b[1]) < 0.000001;
+    }
+
+    function isUsableWalkingSegment(segment, fallbackSegment) {
+      const fallbackLength = fallbackSegment ? fallbackSegment.length : 0;
+      if (!segment || segment.length < 2) return false;
+      if (fallbackLength > 3 && segment.length < 4) return false;
+      if (fallbackLength >= 5 && segment.length < fallbackLength) return false;
+      return true;
+    }
+
+    function appendPath(target, path) {
+      (path || []).forEach(item => {
+        const point = coordinateOf(item);
+        if (!point) return;
+        if (target.length && sameCoordinate(target[target.length - 1], point)) return;
+        target.push(point);
+      });
+    }
+
+    function searchWalkingSegment(walking, start, end) {
+      return new Promise(resolve => {
+        const timer = setTimeout(() => resolve([]), 12000);
+        walking.search(start, end, (status, result) => {
+          clearTimeout(timer);
+          if (status !== "complete" || !result || !result.routes || !result.routes[0]) {
+            resolve([]);
+            return;
+          }
+          const segment = [];
+          (result.routes[0].steps || []).forEach(step => appendPath(segment, step.path || []));
+          resolve(segment);
+        });
+      });
+    }
+
+    function findPathIndex(path, target, fromIndex) {
+      if (!path || !target) return -1;
+      const start = Math.max(0, Number(fromIndex) || 0);
+      for (let i = start; i < path.length; i += 1) {
+        if (sameCoordinate(coordinateOf(path[i]), target)) return i;
+      }
+      return -1;
+    }
+
+    function segmentFallbackPath(routeMap, start, end, fromIndex) {
+      const path = controlledRoutePath(routeMap);
+      if (!path.length) return { path: [], nextIndex: fromIndex || 0 };
+      const startCoord = coordinateOf(start);
+      const endCoord = coordinateOf(end);
+      const startIndex = findPathIndex(path, startCoord, fromIndex || 0);
+      const endIndex = startIndex >= 0 ? findPathIndex(path, endCoord, startIndex + 1) : -1;
+      if (startIndex >= 0 && endIndex > startIndex) {
+        return { path: path.slice(startIndex, endIndex + 1), nextIndex: endIndex };
+      }
+      return { path: [startCoord, endCoord].filter(Boolean), nextIndex: Math.max(0, fromIndex || 0) };
+    }
+
+    async function buildWalkableRoutePath(points, routeMap) {
+      const AMap = state.AMap;
+      const controlledPath = controlledRoutePath(routeMap);
+      if (controlledPath.length >= 2) return controlledPath;
+      if (!AMap || !AMap.Walking || !points || points.length < 2) return [];
+      const walking = new AMap.Walking({ map: null, panel: null });
+      const path = [];
+      const fallbackSegments = [];
+      let fallbackIndex = 0;
+      for (let i = 0; i < points.length - 1; i += 1) {
+        const segmentFallback = segmentFallbackPath(routeMap, points[i], points[i + 1], fallbackIndex);
+        fallbackSegments.push(segmentFallback.path);
+        fallbackIndex = segmentFallback.nextIndex;
+      }
+      for (let i = 0; i < points.length - 1; i += 1) {
+        const start = [points[i].lng, points[i].lat];
+        const end = [points[i + 1].lng, points[i + 1].lat];
+        const segment = await searchWalkingSegment(walking, start, end);
+        const segmentFallback = fallbackSegments[i];
+        appendPath(path, isUsableWalkingSegment(segment, segmentFallback) ? segment : segmentFallback);
+      }
+      return path;
+    }
+
+    function drawRoutePolyline(path, source) {
+      if (!state.map || !state.AMap || !path || path.length < 2) return;
+      state.routePathSource = source || "fallback";
+      state.polyline = new state.AMap.Polyline({
+        path,
+        strokeColor: "#b7791f",
+        strokeWeight: 4,
+        strokeOpacity: 0.86,
+        lineJoin: "round",
+        zIndex: 90
+      });
+      state.map.add(state.polyline);
+    }
+
+    function fallbackRoutePath(routeMap) {
+      if (routeMap && routeMap.walk_polyline && routeMap.walk_polyline.length >= 2) return routeMap.walk_polyline;
+      if (routeMap && routeMap.polyline && routeMap.polyline.length >= 2) return routeMap.polyline;
+      return [];
+    }
+
+    function controlledRoutePath(routeMap) {
+      return routeMap && routeMap.walk_polyline && routeMap.walk_polyline.length >= 2 ? routeMap.walk_polyline : [];
+    }
+
+    function clearOverlays() {
+      if (!state.map) return;
+      if (state.polyline) {
+        state.map.remove(state.polyline);
+        state.polyline = null;
+      }
+      if (state.markers.length) {
+        state.map.remove(state.markers);
+        state.markers = [];
+      }
+    }
+
+    function markerSideForPoint(point) {
+      const isEvenOrder = Number(point.order || 0) % 2 === 0;
+      const fallbackSide = isEvenOrder ? "route-marker-left" : "route-marker-right";
+      if (!state.map || !state.map.lngLatToContainer || !point) return fallbackSide;
+      const container = $("standaloneAmap");
+      const width = container ? container.clientWidth : 0;
+      if (!width) return fallbackSide;
+      try {
+        const pixel = state.map.lngLatToContainer([point.lng, point.lat]);
+        const x = typeof pixel.getX === "function" ? pixel.getX() : (pixel.x !== undefined ? pixel.x : pixel[0]);
+        const edgeBand = Math.min(220, width * 0.35);
+        if (x < edgeBand) return "route-marker-right";
+        if (x > width - edgeBand) return "route-marker-left";
+      } catch (error) {
+        return fallbackSide;
+      }
+      return fallbackSide;
+    }
+
+    function markerContent(point) {
+      const markerSide = markerSideForPoint(point);
+      return `
+        <div class="route-marker ${markerSide}">
+          <span class="route-marker-index">${escapeHtml(String(point.order || ""))}</span>
+          <span class="route-marker-name">${escapeHtml(point.name)}</span>
+        </div>
+      `;
+    }
+
+    function fitRouteBounds(routeMap, points, AMap) {
+      const bounds = routeMap && routeMap.bounds ? routeMap.bounds : {};
+      if (bounds.southwest && bounds.northeast) {
+        state.map.setBounds(new AMap.Bounds(bounds.southwest, bounds.northeast), false, [100, 150, 100, 150]);
+      } else if (points && points.length) {
+        state.map.setCenter([points[0].lng, points[0].lat]);
+      }
+    }
+
+    function waitForViewportUpdate() {
+      return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    }
+
+    async function drawRoute() {
+      if (!state.map || !state.AMap || !state.routeMap) return;
+      const AMap = state.AMap;
+      const points = state.routeMap.points || [];
+      const drawToken = ++state.routeDrawToken;
+      clearOverlays();
+      fitRouteBounds(state.routeMap, points, AMap);
+      await waitForViewportUpdate();
+      if (drawToken !== state.routeDrawToken) return;
+      state.markers = points.map(point => new AMap.Marker({
+        position: [point.lng, point.lat],
+        title: point.name,
+        content: markerContent(point),
+        anchor: "bottom-center",
+        offset: new AMap.Pixel(0, -8),
+        extData: point
+      }));
+      state.markers.forEach((marker, index) => {
+        const point = points[index];
+        if (marker && marker.on && point) {
+          marker.on("click", () => {
+            selectScenic(point);
+            setStatus((state.routeMap.name || "灵山推荐路线") + " · 已选择实景：" + point.name);
+          });
+        }
+      });
+      if (state.markers.length) state.map.add(state.markers);
+      setStatus((state.routeMap.name || "灵山推荐路线") + " · 正在加载景区步道路线...");
+      const walkablePath = await buildWalkableRoutePath(points, state.routeMap);
+      if (drawToken !== state.routeDrawToken) return;
+      if (state.polyline) {
+        state.map.remove(state.polyline);
+        state.polyline = null;
+      }
+      if (walkablePath.length >= 2) {
+        const source = controlledRoutePath(state.routeMap).length >= 2 ? "controlled" : "walkable";
+        drawRoutePolyline(walkablePath, source);
+        setStatus((state.routeMap.name || "灵山推荐路线") + " · 3D 地图已就绪 · 景区步道路线已就绪");
+      } else {
+        const controlledPath = controlledRoutePath(state.routeMap);
+        if (controlledPath.length >= 2) {
+          drawRoutePolyline(controlledPath, "controlled");
+          setStatus((state.routeMap.name || "灵山推荐路线") + " · 3D 地图已就绪 · 景区步道路线已就绪");
+          return;
+        }
+        const fallbackPath = fallbackRoutePath(state.routeMap);
+        drawRoutePolyline(fallbackPath, "fallback");
+        setStatus((state.routeMap.name || "灵山推荐路线") + " · 3D 地图已就绪 · 已使用本地路线");
+      }
+    }
+
+    function hideFallback() {
+      const fallback = $("mapFallback");
+      if (!fallback) return;
+      fallback.classList.add("hidden");
+      fallback.innerHTML = "";
+    }
+
+    function showFallback(message, route, error) {
+      const fallback = $("mapFallback");
+      if (!fallback) return;
+      const points = route && route.points ? route.points : [];
+      const stopText = points.map((point, index) => `${point.order || index + 1}. ${point.name}`).join(" → ");
+      fallback.classList.remove("hidden");
+      fallback.innerHTML = `
+        <div class="fallback-card">
+          <strong>${escapeHtml(message || "本地路线示意")}</strong>
+          <div class="fallback-route">
+            ${points.slice(0, 14).map((point, index) => `
+              <span class="fallback-dot" title="${escapeHtml(point.name)}">${escapeHtml(String(point.order || index + 1))}</span>
+              ${index < Math.min(points.length, 14) - 1 ? `<span class="fallback-line"></span>` : ""}
+            `).join("")}
+          </div>
+          <div class="fallback-stops">${escapeHtml(stopText || "路线数据准备中。")}</div>
+          ${error ? `<div class="fallback-error">${escapeHtml(error)}</div>` : ""}
+        </div>
+      `;
+    }
+
+    async function reloadMap() {
+      setStatus("正在加载 3D 地图...");
+      try {
+        const [config, scenics] = await Promise.all([
+          apiGet("/api/map/config"),
+          apiGet("/api/map/scenics")
+        ]);
+        state.config = config;
+        state.scenics = scenics.points || [];
+        await loadRoutes();
+        await loadRouteMap(currentRouteId());
+        if (!config.ok) {
+          showFallback("本地路线示意", state.routeMap, config.error || "地图 Key 未配置。");
+          setStatus("高德地图未启用，已显示本地路线示意。");
+          return;
+        }
+        await loadAmapScript();
+        initMap();
+        drawRoute();
+        hideFallback();
+        setStatus((state.routeMap.name || "灵山推荐路线") + " · 3D 地图已就绪");
+      } catch (error) {
+        const message = error && error.message ? error.message : "地图加载失败";
+        showFallback("地图加载失败，已显示本地路线示意", state.routeMap, message);
+        setStatus("地图加载失败：" + message);
+      }
+    }
+
+    reloadMap();
+  </script>
+</body>
+</html>

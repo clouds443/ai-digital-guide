@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#e8f5f6"/>
+  <path d="M0 470 C300 380 600 430 1280 360 L1280 720 L0 720 Z" fill="#8fb8c5"/>
+  <path d="M250 420 C540 350 850 360 1040 430" fill="none" stroke="#fff8e7" stroke-width="50" stroke-linecap="round"/>
+  <text x="640" y="260" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#1f2933">五明桥</text>
+</svg>

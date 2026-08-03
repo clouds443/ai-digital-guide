@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#eaf6ff"/>
+  <circle cx="640" cy="430" r="150" fill="#b8d6ec"/>
+  <circle cx="640" cy="360" r="80" fill="#f6c2d6"/>
+  <text x="640" y="220" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#1f2933">九龙灌浴</text>
+</svg>

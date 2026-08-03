@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4096" height="2048" viewBox="0 0 4096 2048">
+  <defs><linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#bde4ff"/><stop offset=".52" stop-color="#eff8ff"/><stop offset=".53" stop-color="#b8d6c8"/><stop offset="1" stop-color="#587d6f"/></linearGradient></defs>
+  <rect width="4096" height="2048" fill="url(#sky)"/>
+  <rect y="1080" width="4096" height="968" fill="#6f9b88"/>
+  <path d="M0 1420 C900 1180 1350 1160 2048 1350 C2900 1580 3280 1500 4096 1260 L4096 2048 L0 2048 Z" fill="#8fb8c5"/>
+  <path d="M900 1300 C1400 1200 2500 1200 3200 1370" fill="none" stroke="#f3f0e7" stroke-width="90" stroke-linecap="round"/>
+  <text x="2048" y="930" text-anchor="middle" font-size="180" font-family="Microsoft YaHei, sans-serif" fill="#1f2933">五明桥</text>
+  <text x="2048" y="1120" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#30445a">香水海与中轴游线 · 演示全景素材</text>
+</svg>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灵山胜境实景观看</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #697386;
+      --line: #d9e2ec;
+      --gold: #b7791f;
+      --paper: #ffffff;
+      --wash: #f6f8fb;
+      --red: #dc2626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: #101820;
+    }
+    button, a { font: inherit; }
+    .shell {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: #101820;
+    }
+    .topbar {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,.94);
+      border-bottom: 1px solid var(--line);
+      z-index: 5;
+    }
+    .title {
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+    }
+    .title strong { font-size: 17px; }
+    .title span {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .tool-btn {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #edf2f7;
+      color: #30445a;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tool-btn.primary { background: var(--gold); color: #fff; border-color: var(--gold); }
+    .viewer-wrap {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+    }
+    #panoramaViewer {
+      position: absolute;
+      inset: 0;
+      background: #101820;
+    }
+    .viewer-fallback-image {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #101820;
+      pointer-events: none;
+    }
+    .viewer-fallback-image.hidden { display: none; }
+    .fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: linear-gradient(135deg, #e9f5f1, #eef4fb);
+    }
+    .fallback.hidden { display: none; }
+    .card {
+      width: min(720px, 94vw);
+      border: 1px solid rgba(183,121,31,.24);
+      border-radius: 8px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 18px 48px rgba(18,38,63,.16);
+      overflow: hidden;
+    }
+    .cover {
+      min-height: 260px;
+      background: #eef4fb center / cover no-repeat;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+    }
+    .card-body { padding: 18px; display: grid; gap: 10px; }
+    .card-body h1 { margin: 0; font-size: 22px; }
+    .card-body p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .hotspots {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      z-index: 4;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: calc(100vw - 32px);
+    }
+    .hotspots.hidden { display: none; }
+    .hotspots button {
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: #fff;
+      background: rgba(20, 28, 36, .68);
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+    }
+    .overview-gallery {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 4;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: calc(100vw - 32px);
+    }
+    .overview-gallery.hidden { display: none; }
+    .overview-gallery button {
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: #fff;
+      background: rgba(20, 28, 36, .68);
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+    }
+    .overview-gallery button.active {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .error { color: var(--red); }
+    @media (max-width: 680px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .actions { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="title">
+        <strong id="scenicTitle">灵山胜境全景地图</strong>
+        <span id="scenicSubtitle">正在准备全景...</span>
+      </div>
+      <div class="actions">
+        <button class="tool-btn" type="button" onclick="reloadPanorama()">重新加载</button>
+        <button class="tool-btn" type="button" onclick="toggleFullscreen()">全屏</button>
+        <a id="externalLink" class="tool-btn" href="https://street.456ss.com/jiejing/c-73.html" target="_blank" rel="noopener">打开无锡街景参考</a>
+        <button class="tool-btn primary" type="button" onclick="returnToMap()">返回地图</button>
+      </div>
+    </header>
+    <section class="viewer-wrap">
+      <div id="panoramaViewer"></div>
+      <img id="viewerFallbackImage" class="viewer-fallback-image hidden" alt="灵山胜境全景预览">
+      <div id="fallback" class="fallback">
+        <div class="card">
+          <div id="cover" class="cover">暂无全景素材</div>
+          <div class="card-body">
+            <h1 id="fallbackTitle">暂无全景素材</h1>
+            <p id="fallbackMessage">该景点暂未配置 360 全景图，可先打开无锡街景参考。</p>
+          </div>
+        </div>
+      </div>
+      <div id="hotspots" class="hotspots hidden"></div>
+      <div id="overviewGallery" class="overview-gallery hidden"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.1/build/panolens.min.js"></script>
+  <script>
+    const PanoramaViewer = "Panolens panorama viewer";
+    const OVERVIEW_PANORAMA_URL = "/panorama.html?overview=1";
+    const state = {
+      detail: null,
+      viewer: null,
+      panorama: null,
+      overviewIndex: 0
+    };
+    const $ = (id) => document.getElementById(id);
+    const escapeHtml = (text) => String(text || "").replace(/[&<>"']/g, (s) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#39;"
+    }[s]));
+
+    function scenicIdFromUrl() {
+      const params = new URLSearchParams(location.search);
+      return params.get("scenic") || "LS-002";
+    }
+
+    function isOverviewMode() {
+      const params = new URLSearchParams(location.search);
+      return params.get("overview") === "1" || params.get("scenic") === "overview";
+    }
+
+    async function apiGet(path) {
+      const response = await fetch(path, { headers: { "Accept": "application/json" } });
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : {};
+      if (!response.ok) throw new Error(data.error || response.statusText || "请求失败");
+      return data;
+    }
+
+    function setTitle(detail) {
+      const isOverview = detail && detail.scenic_id === "overview";
+      $("scenicTitle").textContent = (detail && detail.name ? detail.name : "灵山胜境") + (isOverview ? "" : " · 实景观看");
+      $("scenicSubtitle").textContent = detail && detail.available
+        ? (isOverview ? "点击下方按钮切换不同方位，拖拽查看景区全貌。" : "拖拽画面查看 360 全景，滚轮可缩放。")
+        : "暂无全景素材，已显示兜底信息。";
+      if (detail && detail.external_url) $("externalLink").href = detail.external_url;
+    }
+
+    function showFallback(detail, message) {
+      const fallback = $("fallback");
+      const cover = $("cover");
+      fallback.classList.remove("hidden");
+      $("fallbackTitle").textContent = detail && detail.name ? detail.name : "暂无全景素材";
+      $("fallbackMessage").textContent = message || (detail && detail.message) || "暂无全景素材，可先打开无锡街景参考。";
+      if (detail && detail.cover_url) {
+        cover.textContent = "";
+        cover.style.backgroundImage = `url("${detail.cover_url}")`;
+      } else {
+        cover.textContent = "暂无全景素材";
+        cover.style.backgroundImage = "";
+      }
+    }
+
+    function hideFallback() {
+      $("fallback").classList.add("hidden");
+    }
+
+    function showViewerFallbackImage(url) {
+      const image = $("viewerFallbackImage");
+      if (!image || !url) return;
+      if (image.getAttribute("src") !== url) image.src = url;
+      image.classList.remove("hidden");
+    }
+
+    function hideViewerFallbackImage() {
+      const image = $("viewerFallbackImage");
+      if (image) image.classList.add("hidden");
+    }
+
+    function shouldKeepViewerFallback(detail) {
+      return detail && detail.scenic_id === "overview";
+    }
+
+    function renderHotspots(detail) {
+      const wrap = $("hotspots");
+      const hotspots = detail && detail.hotspots ? detail.hotspots : [];
+      if (!hotspots.length) {
+        wrap.classList.add("hidden");
+        wrap.innerHTML = "";
+        return;
+      }
+      wrap.classList.remove("hidden");
+      wrap.innerHTML = hotspots.map(item => (
+        `<button type="button" onclick="jumpToScenic('${escapeHtml(item.target_scenic_id)}')">${escapeHtml(item.label || "前往下一处")}</button>`
+      )).join("");
+    }
+
+    function renderOverviewGallery(detail) {
+      const wrap = $("overviewGallery");
+      const panoramas = detail && detail.panoramas ? detail.panoramas : [];
+      if (!panoramas.length) {
+        wrap.classList.add("hidden");
+        wrap.innerHTML = "";
+        return;
+      }
+      wrap.classList.remove("hidden");
+      wrap.innerHTML = panoramas.map((item, index) => (
+        `<button class="${index === state.overviewIndex ? "active" : ""}" type="button" onclick="switchOverviewPanorama(${index})">${escapeHtml(item.name || ("全景 " + (index + 1)))}</button>`
+      )).join("");
+    }
+
+    function destroyViewer() {
+      if (state.viewer && state.panorama) {
+        try { state.viewer.remove(state.panorama); } catch (error) {}
+      }
+      state.viewer = null;
+      state.panorama = null;
+      $("panoramaViewer").innerHTML = "";
+      hideViewerFallbackImage();
+    }
+
+    function loadViewer(detail) {
+      destroyViewer();
+      if (!detail.available || !detail.panorama_url) {
+        showFallback(detail);
+        renderHotspots(detail);
+        renderOverviewGallery(detail);
+        return;
+      }
+      showViewerFallbackImage(detail.panorama_url);
+      if (!window.THREE || !window.PANOLENS) {
+        showFallback(detail, "全景查看器加载失败，请检查网络后重试。");
+        renderHotspots(detail);
+        renderOverviewGallery(detail);
+        return;
+      }
+      hideFallback();
+      state.panorama = new PANOLENS.ImagePanorama(detail.panorama_url);
+      state.viewer = new PANOLENS.Viewer({
+        container: $("panoramaViewer"),
+        autoRotate: false,
+        controlBar: true,
+        output: "console"
+      });
+      state.viewer.add(state.panorama);
+      state.panorama.addEventListener("load", () => {
+        if (!shouldKeepViewerFallback(detail)) hideViewerFallbackImage();
+      });
+      state.panorama.addEventListener("error", () => showViewerFallbackImage(detail.panorama_url));
+      renderHotspots(detail);
+      renderOverviewGallery(detail);
+    }
+
+    function overviewDetailForIndex(detail, index) {
+      const panoramas = detail && detail.panoramas ? detail.panoramas : [];
+      if (!panoramas.length) return detail;
+      const safeIndex = Math.max(0, Math.min(index, panoramas.length - 1));
+      const item = panoramas[safeIndex];
+      return Object.assign({}, detail, {
+        panorama_url: item.url,
+        cover_url: item.url,
+        active_panorama_id: item.id,
+        active_panorama_name: item.name
+      });
+    }
+
+    function switchOverviewPanorama(index) {
+      if (!state.detail || state.detail.scenic_id !== "overview") return;
+      state.overviewIndex = Math.max(0, Math.min(Number(index) || 0, (state.detail.panoramas || []).length - 1));
+      loadViewer(overviewDetailForIndex(state.detail, state.overviewIndex));
+    }
+
+    async function reloadPanorama() {
+      const scenicId = scenicIdFromUrl();
+      try {
+        const detail = isOverviewMode()
+          ? await apiGet("/api/panorama/overview")
+          : await apiGet("/api/panorama/scenic/" + encodeURIComponent(scenicId));
+        state.detail = detail;
+        state.overviewIndex = 0;
+        setTitle(detail);
+        loadViewer(detail.scenic_id === "overview" ? overviewDetailForIndex(detail, 0) : detail);
+      } catch (error) {
+        const detail = { name: scenicId, available: false, external_url: "https://street.456ss.com/jiejing/c-73.html" };
+        setTitle(detail);
+        showFallback(detail, error.message || "实景数据加载失败。");
+      }
+    }
+
+    function jumpToScenic(scenicId) {
+      const next = new URL(location.href);
+      next.searchParams.set("scenic", scenicId);
+      history.replaceState(null, "", next.toString());
+      reloadPanorama();
+    }
+
+    function toggleFullscreen() {
+      const root = document.documentElement;
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else if (root.requestFullscreen) {
+        root.requestFullscreen();
+      }
+    }
+
+    function returnToMap() {
+      if (isOverviewMode()) {
+        location.href = "/map.html";
+        return;
+      }
+      const scenicId = scenicIdFromUrl();
+      location.href = "/map.html?scenic=" + encodeURIComponent(scenicId);
+    }
+
+    reloadPanorama();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4096" height="2048" viewBox="0 0 4096 2048">
+  <rect width="4096" height="2048" fill="#d8ecff"/>
+  <rect y="1200" width="4096" height="848" fill="#7fa876"/>
+  <path d="M1690 1300 L2048 520 L2406 1300 Z" fill="#c9a65f"/>
+  <circle cx="2048" cy="500" r="150" fill="#d5b978"/>
+  <rect x="1850" y="1300" width="396" height="160" fill="#d9d0bd"/>
+  <text x="2048" y="1640" text-anchor="middle" font-size="180" font-family="Microsoft YaHei, sans-serif" fill="#1f2933">灵山大佛</text>
+  <text x="2048" y="1800" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#30445a">登高礼佛与太湖远眺 · 演示全景素材</text>
+</svg>

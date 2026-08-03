@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#eef8f4"/>
+  <rect x="350" y="190" width="580" height="250" rx="16" fill="#d8c39a" stroke="#7a4e0c" stroke-width="10"/>
+  <text x="640" y="350" text-anchor="middle" font-size="64" font-family="Microsoft YaHei, sans-serif" fill="#7a4e0c">灵山大照壁</text>
+</svg>

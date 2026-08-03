@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4096" height="2048" viewBox="0 0 4096 2048">
+  <defs><linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#bfe5ff"/><stop offset=".48" stop-color="#eff8ff"/><stop offset=".49" stop-color="#dbeed8"/><stop offset="1" stop-color="#7fb985"/></linearGradient></defs>
+  <rect width="4096" height="2048" fill="url(#sky)"/>
+  <rect y="1030" width="4096" height="1018" fill="#7fb985"/>
+  <rect x="1500" y="720" width="1096" height="620" rx="18" fill="#d8c39a" stroke="#7a4e0c" stroke-width="18"/>
+  <text x="2048" y="1020" text-anchor="middle" font-size="170" font-family="Microsoft YaHei, sans-serif" fill="#7a4e0c">灵山大照壁</text>
+  <text x="2048" y="1270" text-anchor="middle" font-size="72" font-family="Microsoft YaHei, sans-serif" fill="#30445a">演示全景素材 · 后续可替换真实 360 图</text>
+</svg>
