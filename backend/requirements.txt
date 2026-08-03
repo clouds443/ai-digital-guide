@@ -1,0 +1,8 @@
+flask
+flask-cors
+pymysql
+python-docx
+requests
+pdfplumber
+pypdf
+edge-tts

@@ -1,0 +1,5 @@
+# TTS dependencies for the main Flask Python 3.12 environment.
+# GSV-TTS-Lite itself runs in .venvs\gsv-tts-lite and exposes the compatible
+# /tts service on GSV_TTS_LITE_API_URL. The main backend only needs Edge-TTS
+# as a fallback.
+edge-tts

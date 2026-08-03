@@ -1,0 +1,16 @@
+[
+  {
+    "id": "fb-1784513636656",
+    "message": "讲解得不好",
+    "rating": 1,
+    "sentiment": "negative",
+    "created_at": "2026-07-20 10:13:56"
+  },
+  {
+    "id": "fb-1781596398777",
+    "message": "语音识别有时候不准",
+    "rating": 5,
+    "sentiment": "negative",
+    "created_at": "2026-06-16 15:53:18"
+  }
+]

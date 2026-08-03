@@ -1,0 +1,100 @@
+{"id":"Q001","category":"overview","question":"灵山胜境在哪里？","must_include":["无锡","太湖西北部","马山镇"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q002","category":"overview","question":"灵山胜境是什么等级的景区？","must_include":["国家5A级"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q003","category":"overview","question":"灵山胜境占地大约多少？","must_include":["30万平方米"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q004","category":"overview","question":"灵山胜境有什么别称？","must_include":["东方佛国","太湖佛国"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q005","category":"history","question":"小灵山这个名字和谁有关？","must_include":["玄奘","灵鹫山"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q006","category":"history","question":"窥基法师和小灵山有什么关系？","must_include":["住持道场","小灵山庵"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q007","category":"history","question":"祥符禅寺什么时候得名？","must_include":["北宋","大中祥符","1008-1016"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q008","category":"history","question":"现代灵山大佛是哪年落成开光的？","must_include":["1997年11月15日"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q009","category":"history","question":"灵山梵宫是哪年开放的？","must_include":["2009年1月1日"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q010","category":"culture","question":"灵山胜境为什么是佛教交流平台？","must_include":["世界佛教论坛永久会址"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q011","category":"ticket","question":"灵山胜境门票多少钱？","must_include":["成人票","210元","105元"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q012","category":"ticket","question":"哪些人群可能免票？","must_include":["儿童","70周岁以上老人","军人","残疾人"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q013","category":"ticket","question":"观光车联票多少钱？","must_include":["225元","门票+观光车"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q014","category":"ticket","question":"观光车单独买多少钱？","must_include":["40元/人"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q015","category":"visit_time","question":"灵山胜境最佳游览季节是什么时候？","must_include":["3-5月","9-11月"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q016","category":"visit_time","question":"想避开人流几点入园比较好？","must_include":["上午9点前"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q017","category":"tips","question":"景区游览穿什么鞋合适？","must_include":["舒适","运动鞋"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q018","category":"tips","question":"游览需要带哪些物品？","must_include":["相机","手机","充电宝","防晒霜","雨伞"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q019","category":"tips","question":"景区导游服务价格大概多少？","must_include":["300元起"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q020","category":"lodging","question":"景区住宿推荐哪里？","must_include":["灵山精舍"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q021","category":"performance","question":"九龙灌浴每天几点演出？","must_include":["九龙灌浴","10:00","11:30","13:30","15:00"],"must_not_include":["拈花湾","10:35","16:00"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q022","category":"performance","question":"《吉祥颂》每天什么时间演出？","must_include":["吉祥颂","10:35","11:30","14:00","16:00","20分钟"],"must_not_include":["拈花湾","九龙灌浴","13:30","15:00"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q023","category":"performance","question":"《灵山吉祥颂》一场多长时间？","must_include":["吉祥颂","20分钟"],"must_not_include":["拈花湾","九龙灌浴","15分钟"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q024","category":"performance","question":"梵宫演出需要额外买票吗？","must_include":["凭景区大门票","免费入场"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q025","category":"performance","question":"看《吉祥颂》要提前多久到？","must_include":["提前30分钟","排队占座"],"must_not_include":["拈花湾","提前10分钟"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q026","category":"performance","question":"九龙灌浴需要提前多久到？","must_include":["提前10分钟","占位"],"must_not_include":["拈花湾","提前30分钟"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q027","category":"performance","question":"景区有哪些主要演出时间？","must_include":["九龙灌浴","10:00","13:30","吉祥颂","10:35","16:00"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q028","category":"performance","question":"周末节假日演出会加场吗？","must_include":["可能加场","以景区公告为准"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q029","category":"family","question":"带孩子适合看哪个演出？","must_include":["九龙灌浴","吉祥颂","亲子"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q030","category":"opening","question":"梵宫几点开放？","must_include":["9:00-17:00","冬季","16:30"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q031","category":"opening","question":"五印坛城藏香体验什么时候？","must_include":["10:00","14:00"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q032","category":"opening","question":"佛教文化博览馆讲解时段有哪些？","must_include":["9:30","11:00","14:30","16:00"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q033","category":"spot","question":"灵山大照壁有什么看点？","must_include":["华夏第一壁","赵朴初"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q034","category":"spot","question":"灵山大照壁多高多长？","must_include":["39.8米","7米"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q035","category":"spot","question":"五明桥的五明是什么意思？","must_include":["声明","因明","内明","医方明","工巧明"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q036","category":"spot","question":"五明桥适合拍什么？","must_include":["石桥","香水海","倒影"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q037","category":"spot","question":"佛足坛有什么佛教寓意？","must_include":["佛足所至","佛光普照"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q038","category":"spot","question":"佛足坛足印上有什么图案？","must_include":["千辐轮相","宝瓶鱼纹","32种吉祥图案"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q039","category":"spot","question":"五智门象征什么？","must_include":["五方五佛","六度波罗蜜"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q040","category":"spot","question":"五智门多高多宽？","must_include":["16.8米","35米"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q041","category":"spot","question":"菩提大道多长？","must_include":["250米"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q042","category":"spot","question":"菩提大道为什么叫菩提大道？","must_include":["菩提树","悟道成佛"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q043","category":"spot","question":"九龙灌浴表现什么故事？","must_include":["释迦牟尼诞生","九龙沐浴"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q044","category":"spot","question":"九龙灌浴表演后能做什么？","must_include":["接取圣水","祈福安康"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q045","category":"spot","question":"降魔浮雕讲什么故事？","must_include":["佛陀","魔王波旬","成道"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q046","category":"spot","question":"降魔浮雕有多大？","must_include":["长26米","高4.6米"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q047","category":"spot","question":"阿育王柱象征什么？","must_include":["佛法传播","和平","包容"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q048","category":"spot","question":"阿育王柱柱头是什么造型？","must_include":["四头狮子","四方"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q049","category":"spot","question":"天下第一掌是什么？","must_include":["灵山大佛右手","摸佛手"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q050","category":"spot","question":"天下第一掌多高多宽？","must_include":["11.7米","5.5米"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q051","category":"route","question":"从灵山大照壁到天下第一掌要多久？","must_include":["5到8分钟"],"must_not_include":["拈花湾","九龙灌浴","10:00","13:30"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q052","category":"spot","question":"百子戏弥勒有什么寓意？","must_include":["欢喜","包容","多子多福"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q053","category":"spot","question":"百子戏弥勒适合什么游客？","must_include":["亲子","拍照互动"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q054","category":"spot","question":"祥符禅寺有哪些历史遗存？","must_include":["六角井","八角井","白莲池","千年银杏"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q055","category":"spot","question":"祥符禅钟多重？","must_include":["12.8吨"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q056","category":"spot","question":"灵山大佛有多高？","must_include":["88米","101.5米"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q057","category":"spot","question":"灵山大佛用了多少铜？","must_include":["725吨"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q058","category":"culture","question":"登云道216级台阶有什么含义？","must_include":["216","108烦恼","108愿望"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q059","category":"spot","question":"佛教文化博览馆有什么内容？","must_include":["五方五佛","四大名山","世界佛教史","万佛殿"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q060","category":"culture","question":"万佛朝宗是什么意思？","must_include":["9999尊小佛像","室外灵山大佛"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q061","category":"spot","question":"灵山梵宫有什么艺术特色？","must_include":["东阳木雕","琉璃","景泰蓝","玉雕","漆画"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q062","category":"spot","question":"灵山梵宫为什么重要？","must_include":["世界佛教论坛","鲁班奖","佛教艺术殿堂"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q063","category":"spot","question":"五印坛城的五印是什么？","must_include":["施无畏印","与愿印","说法印","禅定印","降魔印"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q064","category":"spot","question":"五印坛城体现哪类佛教文化？","must_include":["藏传佛教","曼陀罗"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q065","category":"spot","question":"曼飞龙塔是什么风格？","must_include":["南传佛教","傣族建筑"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q066","category":"spot","question":"曼飞龙塔为什么是九塔组合？","must_include":["九种智慧","九种功德"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q067","category":"spot","question":"无尽意斋纪念谁？","must_include":["赵朴初"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q068","category":"spot","question":"无尽意斋名字来源是什么？","must_include":["无尽意菩萨经"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q069","category":"opening","question":"无尽意斋开放时间？","must_include":["9:00-17:00","冬季","16:30"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q070","category":"spot","question":"无尽意斋有什么体验？","must_include":["禅茶品鉴","展览","静心休憩"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q071","category":"route","question":"历史文化爱好者怎么游灵山？","must_include":["6小时","灵山大照壁","祥符禅寺","灵山大佛","灵山梵宫","五印坛城"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q072","category":"route","question":"自然风光路线怎么走？","must_include":["5小时","九龙灌浴","菩提大道","灵山大佛","曼飞龙塔","灵山精舍"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q073","category":"route","question":"亲子家庭路线怎么安排？","must_include":["4小时","九龙灌浴","天下第一掌","百子戏弥勒","梵宫","五印坛城"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q074","category":"route","question":"我只有2小时怎么逛？","must_include":["2小时","灵山大照壁","五明桥","九龙灌浴","天下第一掌","灵山大佛"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q075","category":"route","question":"老人同行怎么安排更轻松？","must_include":["老人","观光车","梵宫"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q076","category":"route","question":"下雨天优先去哪？","must_include":["梵宫","佛教文化博览馆","五印坛城"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q077","category":"route","question":"想拍照打卡怎么走？","must_include":["灵山大照壁","五明桥","九龙灌浴","灵山大佛","曼飞龙塔"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q078","category":"route","question":"想体验祈福怎么走？","must_include":["佛足坛","天下第一掌","抱佛脚","五印坛城"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q079","category":"food","question":"想吃素斋怎么安排？","must_include":["梵宫素斋","素面","灵山精舍"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q080","category":"route","question":"第一次来灵山最推荐哪条路线？","must_include":["核心中轴线","演出","灵山大佛","梵宫"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q081","category":"route","question":"带孩子不想太累怎么安排？","must_include":["亲子","动态演出","百子戏弥勒","室内"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q082","category":"route","question":"下午才到还能怎么玩？","must_include":["短线","演出场次","闭馆时间"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q083","category":"route","question":"想看太湖日落应该去哪？","must_include":["灵山大佛平台","下午"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q084","category":"route","question":"历史文化和自然风光怎么取舍？","must_include":["历史文化","自然风光"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q085","category":"route","question":"如果错过九龙灌浴还要等吗？","must_include":["不必久等","天下第一掌","灵山大佛"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q086","category":"comparison","question":"吉祥颂和九龙灌浴有什么区别？","must_include":["梵宫室内演出","户外动态喷泉","10:35","10:00"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q087","category":"comparison","question":"梵宫和五印坛城有什么不同？","must_include":["佛教艺术殿堂","藏传坛城"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q088","category":"comparison","question":"天下第一掌和抱佛脚有什么区别？","must_include":["摸佛手","登高礼佛"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q089","category":"comparison","question":"五明桥和五智门有什么区别？","must_include":["智慧桥梁","核心门户"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q090","category":"comparison","question":"阿育王柱和曼飞龙塔分别代表什么？","must_include":["佛法传播","南传佛教建筑"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q091","category":"recommendation","question":"灵山哪里景色最好？","must_include":["梵宫","灵山大佛平台","曼飞龙塔","香水海"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q092","category":"recommendation","question":"哪个景点最适合亲子互动？","must_include":["九龙灌浴","百子戏弥勒","天下第一掌"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境：历史、文化、景点特色与个性化游览指南.docx","weight":1}
+{"id":"Q093","category":"recommendation","question":"哪个景点最能体现佛教建筑艺术？","must_include":["梵宫","五印坛城","曼飞龙塔"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q094","category":"recommendation","question":"哪个景点是动态景观？","must_include":["九龙灌浴"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q095","category":"recommendation","question":"哪个景点适合了解赵朴初？","must_include":["灵山大照壁","无尽意斋"],"must_not_include":["拈花湾"],"source_doc":"灵山胜境 景点结构化数据集.docx","weight":1}
+{"id":"Q096","category":"small_talk","question":"你好，你是谁？","must_include":["灵小境","AI数字人导游"],"must_not_include":["拈花湾","路线"],"source_doc":"系统配置","weight":1}
+{"id":"Q097","category":"small_talk","question":"你好可爱。","must_include":["谢谢"],"must_not_include":["拈花湾","路线","（"],"source_doc":"系统配置","weight":1}
+{"id":"Q098","category":"small_talk","question":"我爱你。","must_include":["喜欢"],"must_not_include":["拈花湾","路线","（"],"source_doc":"系统配置","weight":1}
+{"id":"Q099","category":"boundary","question":"你能讲一个和灵山无关的笑话吗？","must_include":["灵山胜境"],"must_not_include":["拈花湾"],"source_doc":"系统配置","weight":1}
+{"id":"Q100","category":"boundary","question":"我问的问题你不确定怎么办？","must_include":["以景区公告为准","不编造"],"must_not_include":["拈花湾"],"source_doc":"系统配置","weight":1}
